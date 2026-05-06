@@ -1,0 +1,31 @@
+main()
+ └── MyApp
+      └── MaterialApp
+           └── ProfileUI
+                └── Scaffold
+                     ├── AppBar
+                     │    └── Text ("Profile")
+                     │
+                     └── Body
+                          └── Center
+                               └── Card
+                                    └── Padding
+                                         └── Column (mainAxisSize: min)
+                                              ├── CircleAvatar
+                                              │    └── NetworkImage
+                                              │
+                                              ├── SizedBox (height: 15)
+                                              │
+                                              ├── Text ("Elderly Man")
+                                              │
+                                              ├── SizedBox (height: 8)
+                                              │
+                                              ├── Row
+                                              │    ├── Icon (email)
+                                              │    ├── SizedBox (width: 8)
+                                              │    └── Text (email)
+                                              │
+                                              ├── SizedBox (height: 20)
+                                              │
+                                              └── ElevatedButton
+                                                   └── Text ("Follow")
