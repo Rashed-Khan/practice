@@ -11,85 +11,76 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileUI(),
+      home: ProfileCardUI(),
     );
   }
 }
 
-class ProfileUI extends StatelessWidget {
-  const ProfileUI({super.key});
+class ProfileCardUI extends StatefulWidget {
+  const ProfileCardUI({super.key});
+
+  @override
+  State<ProfileCardUI> createState() => _ProfileCardUIState();
+}
+
+class _ProfileCardUIState extends State<ProfileCardUI> {
+
+  String buttonText = 'Follow';
+  void toggleFlow(){
+    setState(() {
+      buttonText = buttonText == 'Follow' ? 'Following' : 'Follow';
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
+      backgroundColor: Colors.grey[200],
       body: Center(
-        child: Card(
-          elevation: 12,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+        child: Container(
+          width: 300,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10,
+                spreadRadius: 2,
+              )
+            ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const CircleAvatar(
-                  radius: 50,
-                  backgroundImage: NetworkImage(
-                    "https://images.pexels.com/photos/33106773/pexels-photo-33106773/free-photo-of-elderly-man-relaxing-outdoors-by-stone-wall-in-izmir.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(
+                  "https://images.pexels.com/photos/33106773/pexels-photo-33106773.jpeg",
                 ),
-
-                const SizedBox(height: 15),
-
-                const Text(
-                  "Elderly Man",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "Md Rashed Khan",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-
-                const SizedBox(height: 8),
-
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.email, color: Colors.grey),
-                    SizedBox(width: 8),
-                    Text(
-                      "example@email.com",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 20),
-
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 12,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    "Follow",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 5),
+              const Text(
+                "Flutter Developer in Progress 🚀",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey),
+              ),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: toggleFlow,
+                child: Text(buttonText),
+              ),
+            ],
           ),
         ),
       ),
